@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: aabc49a6d59039c42bc2e3a06428ae42
+guid: 7c6f771a54a96874293766a76a87f6d0
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -110,22 +110,22 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Room_1-1_0
+      name: "\uB4A4_0"
       rect:
         serializedVersion: 2
-        x: 136
-        y: 62
-        width: 1643
-        height: 960
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 605
+        y: 54
+        width: 700
+        height: 990
+      alignment: 9
+      pivot: {x: 0.4549529, y: 0.00000006121881}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ed52d8dea67672447ac880246052999b
-      internalID: -957932711
+      spriteID: 76b8dc9e405f28a45aa87109a33a7d93
+      internalID: -1822166364
       vertices: []
       indices: 
       edges: []
@@ -141,7 +141,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Room_1-1_0: -957932711
+      "\uB4A4_0": -1822166364
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
