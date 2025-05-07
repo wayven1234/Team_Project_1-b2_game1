@@ -56,5 +56,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "Team Project 1-b2 game1.sln"
+    "dotnet.defaultSolution": "Team_Project_1-b2_game1.sln"
 }
