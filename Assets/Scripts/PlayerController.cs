@@ -13,6 +13,8 @@ public class PlayerController : MonoBehaviour
     // 애니메이터 컴포넌트 참조
     private Animator animator;
 
+    private Camera mainCamera;
+
     // 현재 플레이어 상태를 나타내는 변수
     private string currentState = "Player_front";   // 기본 상태를 정면으로 설정
 
@@ -22,6 +24,12 @@ public class PlayerController : MonoBehaviour
     private const string PLAYER_LEFT = "Player_left";
     private const string PLAYER_RIGHT = "Player_right";
 
+    private Vector3 room2PlayerPosition = new Vector3(4.07f, -7.55f, 0f);
+    private Vector3 room2CameraPosition = new Vector3(8.83f, -10.18f, -10f);
+
+    private Vector3 room1PlayerPosition = new Vector3(4.07f, -4.65f, 0f);
+    private Vector3 room1CameraPosition = new Vector3(0f, 0f, -10f);
+    
 
     void Start()
     {
@@ -31,10 +39,17 @@ public class PlayerController : MonoBehaviour
         // Animator 컴포넌트 가져오기
         animator = GetComponent<Animator>();
 
+        mainCamera = Camera.main;
+
         // 만약 Rigidbody2D가 없다면 경고 메시지 출력
         if(rb == null)
         {
             Debug.LogError("Player 오브젝트에 Rigidbody2D 컴포넌트가 없습니다!");
+        }
+
+        if(mainCamera == null)
+        {
+            Debug.LogError("씬에 메인 카메라가 없습니다!");
         }
     }
 
@@ -77,18 +92,47 @@ public class PlayerController : MonoBehaviour
 
         // 플레이어 이동
         transform.Translate(movement * moveSpeed * Time.deltaTime);
+    }
 
-        // 애니메이션 상태를 안전하게 변경하는 함수
-        void ChangeAnimationState(string newState)
+    // 애니메이션 상태를 안전하게 변경하는 함수
+    void ChangeAnimationState(string newState)
+    {
+        // 현재 재생 중인 애니메이션을 다시 재생하려고 하면 리턴
+        if (currentState == newState) return;
+
+        // 새로운 애니메이션 재생
+        animator.Play(newState);
+
+        // 현재 상태 업데이트
+        currentState = newState;
+    }
+
+    //트리거 충돌 감지
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        // Room_1_OutDoor 태그를 가진 오브젝트와 충돌했을 때
+        if (other.CompareTag("Room_1_OutDoor"))
         {
-            // 현재 재생 중인 애니메이션을 다시 재생하려고 하면 리턴
-            if (currentState == newState) return;
+            // 플레이어 위치 이동
+            transform.position = room2PlayerPosition;
 
-            // 새로운 애니메이션 재생
-            animator.Play(newState);
+            // 카메라 위치 이동
+            if (mainCamera != null)
+            {
+                mainCamera.transform.position = room2CameraPosition;
+            }
+        }
+        // Room_1_InDoor 태그를 가진 오브젝트와 충돌했을 때
+        else if (other.CompareTag("Room_1_InDoor"))
+        {
+            // 플레이어 위치 이동
+            transform.position = room1PlayerPosition;
 
-            // 현재 상태 업데이트
-            currentState = newState;
+            // 카메라 위치 이동
+            if (mainCamera != null)
+            {
+                mainCamera.transform.position = room1CameraPosition;
+            }
         }
     }
 }

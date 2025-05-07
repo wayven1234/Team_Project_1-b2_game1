@@ -3,7 +3,9 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Room_1_OutDoor
+  - Room_1_InDoor
   layers:
   - Default
   - TransparentFX
