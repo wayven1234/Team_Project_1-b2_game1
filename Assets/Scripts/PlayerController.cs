@@ -1,11 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Net.NetworkInformation;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
     // 플레이어 이동 속도
     public float moveSpeed = 5f;
+
+    //원래 이동 속도를 저장할 변수
+    private float originalMoveSpeed;
 
     // 물리 기반 이동을 위한 Rigifbody2D
     private Rigidbody2D rb;
@@ -29,7 +33,11 @@ public class PlayerController : MonoBehaviour
 
     private Vector3 room1PlayerPosition = new Vector3(4.07f, -4.65f, 0f);
     private Vector3 room1CameraPosition = new Vector3(0f, 0f, -10f);
-    
+
+    // 느려질 이동 속도
+    public float slowedSpeed = 2.5f;
+    // 느려지는 지속 시간
+    public float slowDuration = 3f;
 
     void Start()
     {
@@ -40,6 +48,9 @@ public class PlayerController : MonoBehaviour
         animator = GetComponent<Animator>();
 
         mainCamera = Camera.main;
+
+        // 원래 이동 속도 저장
+        originalMoveSpeed = moveSpeed;
 
         // 만약 Rigidbody2D가 없다면 경고 메시지 출력
         if(rb == null)
@@ -134,5 +145,34 @@ public class PlayerController : MonoBehaviour
                 mainCamera.transform.position = room1CameraPosition;
             }
         }
+        // Scissor 태그를 가진 오프젝트와 충돌했을 때
+        else if (other.CompareTag("Scissor"))
+        {
+            // 가위 아이템 제거
+            Destroy(other.gameObject);
+
+            // 이동 속도 감소
+            SlowPlayerDown();
+        }
+    }
+    // 플레이어 속도를 감소시키는 함수
+    private void SlowPlayerDown()
+    {
+        // 이미 실행 중인 코루틴이 있다면 중지
+        StopAllCoroutines();
+
+        // 이동 속도 감소
+        moveSpeed = slowedSpeed;
+
+        StartCoroutine(RestoreSpeed());
+    }
+    // 일정 시간 후에 속도를 원래대로 복구하는 코루틴
+    private IEnumerator RestoreSpeed()
+    {
+        // 지정된 시간만큼 대기
+        yield return new WaitForSeconds(slowDuration);
+
+        // 이동 속도 복구
+        moveSpeed = originalMoveSpeed;
     }
 }

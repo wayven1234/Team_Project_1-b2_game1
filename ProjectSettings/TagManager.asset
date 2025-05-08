@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Room_1_OutDoor
   - Room_1_InDoor
+  - Scissor
   layers:
   - Default
   - TransparentFX
@@ -14,9 +15,9 @@ TagManager:
   - Water
   - UI
   - 
+  - Map
   - 
-  - 
-  - 
+  - Player
   - 
   - 
   - 
@@ -42,6 +43,9 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Item
+    uniqueID: 2523553601
     locked: 0
   - name: Player
     uniqueID: 4021795727

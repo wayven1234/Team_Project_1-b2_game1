@@ -18,17 +18,20 @@ public class GameManager : MonoBehaviour
     private float scaleFactor = 1.2f;   // 버튼이 커지는 정도를 조절하는
 
     [SerializeField] private string nextSceneName = "Room_1";
-    [SerializeField] private Button yesButton;
+    [SerializeField] private GameObject gameOverPanel;        // 게임 오버 패널 연결
 
 
     void Start()
     {
        
-        if (yesButton == null)
+        if (yesBtn == null)
         {
-            yesButton = GetComponent<Button>();
+            yesBtn = GetComponent<Button>();
         }
-        yesButton.onClick.AddListener(OnyesButtonClick);
+        yesBtn.onClick.AddListener(OnyesButtonClick);
+
+        // 시작 시 패널 상태 설정
+        gameOverPanel.SetActive(false); // 비활성화
 
 
         // 버튼들의 원래 크기를 저장
