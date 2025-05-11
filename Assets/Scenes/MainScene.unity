@@ -698,7 +698,7 @@ MonoBehaviour:
   yesBtn: {fileID: 301270207}
   noBtn: {fileID: 1036060141}
   nextSceneName: Room_1
-  yesButton: {fileID: 301270207}
+  gameOverPanel: {fileID: 1528158553}
 --- !u!4 &759914163
 Transform:
   m_ObjectHideFlags: 0
@@ -1204,7 +1204,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1528158554
 RectTransform:
   m_ObjectHideFlags: 0

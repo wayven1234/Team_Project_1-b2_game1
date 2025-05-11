@@ -12,8 +12,13 @@ public class KidController : MonoBehaviour
     // 이동 속도
     public float moveSpeed = 3.5f;
 
+    // 물리 기반 이동을 위한 Rigifbody2D
+    private Rigidbody2D rb;
+
     // 경로 재계산 간격
     public float pathUpdateInterval = 0.5f;
+
+    [SerializeField] Transform traget;
 
     private NavMeshAgent agent;
 
@@ -28,6 +33,10 @@ public class KidController : MonoBehaviour
     private const string KID_LEFT = "Kid_left";
     private const string KID_RIGHT = "Kid_right";
 
+    private Vector3 room1KidPosition = new Vector3(4.07f, -4.65f, 0f);
+
+    private Vector3 room2KidPosition = new Vector3(4.07f, -7.55f, 0f);
+
     // 이동 방향 계산
     private Vector3 previousPosition;
 
@@ -36,6 +45,14 @@ public class KidController : MonoBehaviour
 
     void Start()
     {
+        // Rigidbody2D 컴포넌트 가져오기
+        rb = GetComponent<Rigidbody2D>();
+
+        // 만약 Rigidbody2D가 없다면 경고 메시지 출력
+        if (rb == null)
+        {
+            Debug.LogError("Kid 오브젝트에 Rigidbody2D 컴포넌트가 없습니다!");
+        }
         // Animator 컴포넌트 가져오기
         animator = GetComponent<Animator>();
 
@@ -67,7 +84,7 @@ public class KidController : MonoBehaviour
         agent.stoppingDistance = 1f;
         agent.autoBraking = true;
         agent.updatePosition = true;
-        agent.updateRotation = true;
+        agent.updateRotation = false;
 
         // 2D 게임에서 NavMeshAgent를 사용하기 위한 설정
         agent.updateUpAxis = false;
@@ -94,8 +111,14 @@ public class KidController : MonoBehaviour
         // 일정 간격으로 경로 재계산
         if (pathUpdateTimer >= pathUpdateInterval)
         {
-            // 플레이어를 향한 경로 설정
-            agent.SetDestination(player.position);
+            if (agent != null && agent.isOnNavMesh)
+            {
+                agent.SetDestination(player.position);
+            }
+            else
+            {
+                Debug.LogWarning("NavMeshAgent가 NavMesh 위에 있지 않습니다!");
+            }
             pathUpdateTimer = 0f;
         }
 
@@ -154,6 +177,7 @@ public class KidController : MonoBehaviour
         }
     }
 
+
     // 애니메이션 상태를 안전하게 변경하는 함수
     void ChangeAnimationState(string newState)
     {
@@ -165,5 +189,20 @@ public class KidController : MonoBehaviour
 
         // 현재 상태 업데이트
         currentState = newState;
+    }
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        // Room_1_InDoor 태그를 가진 오브젝트와 충돌했을 때
+        if (other.CompareTag("Room_1_OutDoor"))
+        {
+            // Kid 위치 이동
+            transform.position = room2KidPosition;
+        }
+        // Room_1_OutDoor 태그를 가진 오브젝트와 충돌했을 때
+        else if (other.CompareTag("Room_1_InDoor"))
+        {
+            // Kid 위치 이동
+            transform.position = room1KidPosition;
+        }
     }
 }
