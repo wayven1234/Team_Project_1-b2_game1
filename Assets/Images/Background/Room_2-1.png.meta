@@ -110,34 +110,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Room_2-1_0
-      rect:
-        serializedVersion: 2
-        x: 135
-        y: 59
-        width: 1642
-        height: 956
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a6595db7149ec9449a5e532211d6beb4
-      internalID: 1620844807
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: Room_2-1_1
       rect:
         serializedVersion: 2
-        x: 607
-        y: 0
-        width: 1313
-        height: 1080
+        x: 138
+        y: 60
+        width: 1642
+        height: 958
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
