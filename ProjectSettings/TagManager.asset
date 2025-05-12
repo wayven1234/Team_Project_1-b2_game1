@@ -11,6 +11,9 @@ TagManager:
   - Room_2_OutDoor
   - Room_3_InDoor
   - Room_3_OutDoor
+  - Piece
+  - Warning
+  - Kid
   layers:
   - Default
   - TransparentFX

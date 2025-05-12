@@ -12,6 +12,9 @@ public class KidController : MonoBehaviour
     // 이동 속도
     public float moveSpeed = 3.5f;
 
+    // 게임 오버 패널
+    public GameObject gameoverPanel;
+
     // 물리 기반 이동을 위한 Rigifbody2D
     private Rigidbody2D rb;
 
@@ -42,6 +45,9 @@ public class KidController : MonoBehaviour
 
     // 경로 업데이트 타이머
     private float pathUpdateTimer = 0;
+
+    // 추격 활성화 상태
+    private bool isChasing = false;
 
     void Start()
     {
@@ -82,7 +88,7 @@ public class KidController : MonoBehaviour
         agent.angularSpeed = 120f;
         agent.acceleration = 8f;
         agent.stoppingDistance = 1f;
-        agent.autoBraking = true;
+        agent.autoBraking = false;
         agent.updatePosition = true;
         agent.updateRotation = false;
 
@@ -98,11 +104,17 @@ public class KidController : MonoBehaviour
 
         // 이전 위치 초기화
         previousPosition = transform.position;
+
+        // 회전값 초기화 (회전 방지)
+        transform.rotation = Quaternion.identity;
+
+        // 처음에는 추격 비활성화 (Player가 점에 트리거되기 전까지)
+        DisableChasing();
     }
 
     void Update()
     {
-        if (player == null)
+        if (!isChasing || player == null)
             return;
 
         // 경로 업데이트 타이머 증가
@@ -203,6 +215,32 @@ public class KidController : MonoBehaviour
         {
             // Kid 위치 이동
             transform.position = room1KidPosition;
+        }
+        // "Player" 태그를 지닌 오브젝트와 충동했는지 확인
+        if (other.CompareTag("Player"))
+        {
+            if (gameoverPanel != null)
+            {
+                gameoverPanel.SetActive(true);
+            }
+        }
+    }
+
+    // 추격 활성화 함수
+
+    public void EnableChasing()
+    {
+        isChasing = true;
+        agent.isStopped = false;
+    }
+
+    // 추격 비활성화 함수
+    public void DisableChasing()
+    {
+        isChasing = false;
+        if (agent != null && agent.isActiveAndEnabled)
+        {
+            agent.isStopped = true;
         }
     }
 }

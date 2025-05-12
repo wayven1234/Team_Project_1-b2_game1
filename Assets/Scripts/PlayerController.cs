@@ -11,6 +11,9 @@ public class PlayerController : MonoBehaviour
     //원래 이동 속도를 저장할 변수
     private float originalMoveSpeed;
 
+    // kidController 참조
+    public KidController kidController;
+
     // 물리 기반 이동을 위한 Rigifbody2D
     private Rigidbody2D rb;
 
@@ -74,6 +77,17 @@ public class PlayerController : MonoBehaviour
         if(mainCamera == null)
         {
             Debug.LogError("씬에 메인 카메라가 없습니다!");
+        }
+
+        // KIdController가 연결되어 있지 않다면 찾기
+        if(kidController == null)
+        {
+            // "Kid" 태그를 지닌 오브젝트 찾기
+            GameObject kidObject = GameObject.FindGameObjectWithTag("Kid");
+            if(kidObject != null)
+            {
+                kidController = kidObject.GetComponent<KidController>();
+            }
         }
     }
 
@@ -219,7 +233,16 @@ public class PlayerController : MonoBehaviour
             // 이동 속도 감소
             SlowPlayerDown();
         }
+        // "Warning" 태그를 지닌 오브젝트와 충돌했을 때
+        else if (other.CompareTag("Warning"))
+        {
+            if (kidController != null)
+            {
+                kidController.EnableChasing();
+            }
+        }
     }
+
     // 플레이어 속도를 감소시키는 함수
     private void SlowPlayerDown()
     {
