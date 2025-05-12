@@ -51,7 +51,7 @@ public class PlayerController : MonoBehaviour
 
 
     // 느려질 이동 속도
-    public float slowedSpeed = 2.5f;
+    public float slowedSpeed = 6.5f;
     // 느려지는 지속 시간
     public float slowDuration = 3f;
 
