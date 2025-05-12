@@ -34,6 +34,19 @@ public class PlayerController : MonoBehaviour
     private Vector3 room1PlayerPosition = new Vector3(4.07f, -4.65f, 0f);
     private Vector3 room1CameraPosition = new Vector3(0f, 0f, -10f);
 
+    private Vector3 room3_2PlayerPosition = new Vector3(12.9f, -17.6f, 0f);
+    private Vector3 room3_2CameraPosition = new Vector3(7.3f, -20.28f, -10f);
+
+    private Vector3 room2_3PlayerPosition = new Vector3(12.9f, -14.8f, 0f);
+    private Vector3 room2_3CameraPosition = new Vector3(8.83f, -10.18f, -10f);
+
+    private Vector3 room3PlayerPosition = new Vector3(15.18f, -23.62f, 0f);
+    private Vector3 room3CameraPosition = new Vector3(7.3f, -20.2847f, -10f);
+
+    private Vector3 room3_4PlayerPosition = new Vector3(17.35f, -23.79f, 0f);
+    private Vector3 room3_4CameraPosition = new Vector3(25.1f, -23.2096f, -10f);
+
+
     // 느려질 이동 속도
     public float slowedSpeed = 2.5f;
     // 느려지는 지속 시간
@@ -145,6 +158,58 @@ public class PlayerController : MonoBehaviour
                 mainCamera.transform.position = room1CameraPosition;
             }
         }
+        // Room_2_OutDoor 태그를 가진 오브젝트와 충돌했을 때
+        else if (other.CompareTag("Room_2_OutDoor"))
+        {
+            //플레이어 위치 이동
+            transform.position = room3_2PlayerPosition;
+
+            if (mainCamera != null)
+            {
+                mainCamera.transform.position = room3_2CameraPosition;
+            }
+        }
+        // Room_2_InDoor 태그를 가진 오브젝트와 충돌했을 때
+        else if (other.CompareTag("Room_2_InDoor"))
+        {
+            // 플레이어 위치 이동
+            transform.position = room2_3PlayerPosition;
+
+            // 카메라 위치 이동
+            if (mainCamera != null) 
+            {
+                mainCamera.transform.position = room2_3CameraPosition;
+            }
+        }
+
+
+
+        // Room_3_OutDoor 태그를 가진 오브젝트와 충돌했을 때
+        else if (other.CompareTag("Room_3_OutDoor"))
+        {
+            // 플레이어 위치 이동
+            transform.position = room3_4PlayerPosition;
+
+            // 카메라 위치 이동
+            if (mainCamera != null)
+            {
+                mainCamera.transform.position = room3_4CameraPosition;
+            }
+        }
+
+        // Room_3_InDoor 태그를 가진 오브젝트와 충돌했을 때
+        else if (other.CompareTag("Room_3_InDoor"))
+        {
+            // 플레이어 위치 이동
+            transform.position = room3PlayerPosition;
+
+            // 카메라 위치 이동
+            if (mainCamera != null)
+            {
+                mainCamera.transform.position = room3CameraPosition;
+            }
+        }    
+
         // Scissor 태그를 가진 오프젝트와 충돌했을 때
         else if (other.CompareTag("Scissor"))
         {

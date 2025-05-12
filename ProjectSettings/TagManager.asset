@@ -7,6 +7,10 @@ TagManager:
   - Room_1_OutDoor
   - Room_1_InDoor
   - Scissor
+  - Room_2_InDoor
+  - Room_2_OutDoor
+  - Room_3_InDoor
+  - Room_3_OutDoor
   layers:
   - Default
   - TransparentFX
