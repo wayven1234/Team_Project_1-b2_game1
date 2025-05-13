@@ -60,3 +60,6 @@ TagManager:
   - name: Kid
     uniqueID: 3169831901
     locked: 0
+  - name: Hello
+    uniqueID: 3568929607
+    locked: 0

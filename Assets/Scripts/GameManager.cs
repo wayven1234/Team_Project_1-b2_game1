@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
     private float scaleFactor = 1.2f;   // 버튼이 커지는 정도를 조절하는
 
     [SerializeField] private string nextSceneName = "Room_1";
+    [SerializeField] private string nextSceneName2 = "MainScene";
     [SerializeField] private GameObject gameOverPanel;        // 게임 오버 패널 연결
 
 
@@ -29,6 +30,12 @@ public class GameManager : MonoBehaviour
             yesBtn = GetComponent<Button>();
         }
         yesBtn.onClick.AddListener(OnyesButtonClick);
+
+        if (noBtn == null)
+        {
+            noBtn = GetComponent<Button>();
+        }
+        noBtn.onClick.AddListener(OnnoButtonClick);
 
         // 시작 시 패널 상태 설정
         gameOverPanel.SetActive(false); // 비활성화
@@ -55,6 +62,15 @@ public class GameManager : MonoBehaviour
     public void LoadNextScene()
     {
         SceneManager.LoadScene(nextSceneName);
+    }
+    public void OnnoButtonClick()
+    {
+        Debug.Log("no button clicked");
+        LoadNextScene2();
+    }
+    public void LoadNextScene2()
+    {
+        SceneManager.LoadScene(nextSceneName2);
     }
 
     void AddButtonEvents(Button targetButton, Button otherButton)
