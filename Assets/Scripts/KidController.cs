@@ -38,10 +38,6 @@ public class KidController : MonoBehaviour
     private const string KID_LEFT = "Kid_left";
     private const string KID_RIGHT = "Kid_right";
 
-    private Vector3 room1KidPosition = new Vector3(4.07f, -4.65f, 0f);
-
-    private Vector3 room2KidPosition = new Vector3(4.07f, -7.55f, 0f);
-
     // 이동 방향 계산
     private Vector3 previousPosition;
 
@@ -206,18 +202,7 @@ public class KidController : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
-        // Room_1_InDoor 태그를 가진 오브젝트와 충돌했을 때
-        if (other.CompareTag("Room_1_OutDoor"))
-        {
-            // Kid 위치 이동
-            transform.position = room2KidPosition;
-        }
-        // Room_1_OutDoor 태그를 가진 오브젝트와 충돌했을 때
-        else if (other.CompareTag("Room_1_InDoor"))
-        {
-            // Kid 위치 이동
-            transform.position = room1KidPosition;
-        }
+       
         // "Player" 태그를 지닌 오브젝트와 충동했는지 확인
         if (other.CompareTag("Player"))
         {

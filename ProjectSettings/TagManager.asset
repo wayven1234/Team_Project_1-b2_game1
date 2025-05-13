@@ -14,6 +14,9 @@ TagManager:
   - Piece
   - Warning
   - Kid
+  - Key
+  - Ending
+  - Box
   layers:
   - Default
   - TransparentFX

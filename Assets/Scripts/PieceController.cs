@@ -14,6 +14,9 @@ public class PieceController : MonoBehaviour
     // 현재 수집한 조각 수
     private int collectedPieces = 0;
 
+    public KeyControl Kc;
+    public GameObject Box;
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         // "Piece" 태그를 지닌 오브젝트와 충동했는지 확인
@@ -32,6 +35,13 @@ public class PieceController : MonoBehaviour
                 collectedPieces++;
 
                 Debug.Log("조각 수집: " + collectedPieces + "/" + images.Length);
+                if (collectedPieces >= 4)
+                {
+                    // 
+                    Debug.Log("수집 완료");
+                    Kc.randomkey();
+                    Box.SetActive(false);
+                }
             }
         }
     }
