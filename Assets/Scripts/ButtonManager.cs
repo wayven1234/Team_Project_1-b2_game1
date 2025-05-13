@@ -34,23 +34,26 @@ public class ButtonManager : MonoBehaviour
         }
     }
 
+    // 시작 버튼 클릭 시 호출되는 함수
     public void OnStartButtonClick()
     {
         Debug.Log("Start button clicked");
         LoadNextScene();
     }
 
+    // 다음 씬을 로드하는 함수
     public void LoadNextScene()
     {
         SceneManager.LoadScene(nextSceneName);
     }
 
-
+    // 메뉴 패널을 켜는 함수
     public void MenuPanelOn()
     {
         menuPanel.SetActive(true);
     }
 
+    // 메뉴 패널을 끄는 함수
     public void MenuPanelOff()
     {
         menuPanel.SetActive(false);

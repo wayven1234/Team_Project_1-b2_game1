@@ -206,40 +206,46 @@ public class KidController : MonoBehaviour
         // "Player" 태그를 지닌 오브젝트와 충동했는지 확인
         if (other.CompareTag("Player"))
         {
-            Hello();
+            Hello(); // 인사 패널 표시 함수 호출
 
+            // 게임 오버 패널이 할당되어 있다면
             if (gameoverPanel != null)
             {
-                gameoverPanel.SetActive(true);
+                gameoverPanel.SetActive(true); // 게임 오버 패널 활성화
             }
         }
     }
+
+    // 인사 패널을 2초간 보여주는 함수
     public void Hello()
     {
-        helloPanel.SetActive(true);
-        Invoke("HidePanel", 2f);
+        helloPanel.SetActive(true); // 인사 패널 활성화
+        Invoke("HidePanel", 2f); // 2초 후 HidePanel 함수 호출
     }
 
+    // 인사 패널을 숨기는 함수
     public void HidePanel()
     {
-        helloPanel.SetActive(false);
+        helloPanel.SetActive(false); // 인사 패널 비활성화
     }
 
     // 추격 활성화 함수
 
     public void EnableChasing()
     {
-        isChasing = true;
-        agent.isStopped = false;
+        isChasing = true; // 추격 상태로 전환
+        agent.isStopped = false; // 에이전트 이동 재개
     }
 
     // 추격 비활성화 함수
     public void DisableChasing()
     {
-        isChasing = false;
-        if (agent != null && agent.isActiveAndEnabled)
+        isChasing = false; // 추격 상태 해제
+
+        // agent가 null이 아니고 활성화되어 있으면
+        if (agent != null && agent.isActiveAndEnabled) 
         {
-            agent.isStopped = true;
+            agent.isStopped = true; // 에이전트 이동 정지
         }
     }
 }

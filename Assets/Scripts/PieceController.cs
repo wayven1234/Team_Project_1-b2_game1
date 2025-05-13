@@ -34,12 +34,17 @@ public class PieceController : MonoBehaviour
                 // 수집한 조각 수 증가
                 collectedPieces++;
 
+                // 현재까지 수집한 조각 개수와 전체 이미지 개수를 로그로 출력
                 Debug.Log("조각 수집: " + collectedPieces + "/" + images.Length);
                 if (collectedPieces >= 4)
                 {
-                    // 
+                    // 수집 완료 로그 출력
                     Debug.Log("수집 완료");
+
+                    // KeyControl 스크립트의 randomkey() 함수 호출 (열쇠를 랜덤 위치에 생성)
                     Kc.randomkey();
+
+                    // Box 오브젝트를 비활성화(숨김)
                     Box.SetActive(false);
                 }
             }
