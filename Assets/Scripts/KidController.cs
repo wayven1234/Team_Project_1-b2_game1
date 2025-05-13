@@ -15,6 +15,8 @@ public class KidController : MonoBehaviour
     // 게임 오버 패널
     public GameObject gameoverPanel;
 
+    public GameObject helloPanel;
+
     // 물리 기반 이동을 위한 Rigifbody2D
     private Rigidbody2D rb;
 
@@ -219,11 +221,23 @@ public class KidController : MonoBehaviour
         // "Player" 태그를 지닌 오브젝트와 충동했는지 확인
         if (other.CompareTag("Player"))
         {
+            Hello();
+
             if (gameoverPanel != null)
             {
                 gameoverPanel.SetActive(true);
             }
         }
+    }
+    public void Hello()
+    {
+        helloPanel.SetActive(true);
+        Invoke("HidePanel", 2f);
+    }
+
+    public void HidePanel()
+    {
+        helloPanel.SetActive(false);
     }
 
     // 추격 활성화 함수
