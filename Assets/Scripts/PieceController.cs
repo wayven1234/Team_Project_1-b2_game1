@@ -43,9 +43,8 @@ public class PieceController : MonoBehaviour
 
                     // KeyControl 스크립트의 randomkey() 함수 호출 (열쇠를 랜덤 위치에 생성)
                     Kc.randomkey();
-
-                    // Box 오브젝트를 비활성화(숨김)
-                    Box.SetActive(false);
+                    
+                    Destroy(Box);
                 }
             }
         }

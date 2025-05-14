@@ -32,6 +32,9 @@ public class KeyControl : MonoBehaviour
 
         // 선택된 위치에 열쇠 프리팹 생성
         Instantiate(Keyprefab, chosenPoint.position,chosenPoint.rotation);
+
+        Destroy(wallobject);
+
     }
 
     // 게임 시작 시 실행되는 함수
@@ -47,9 +50,6 @@ public class KeyControl : MonoBehaviour
         // 충돌한 오브젝트의 태그가 "Key"인지 확인
         if (collision.CompareTag("Key"))
         {
-            // 벽 오브젝트 비활성화
-            wallobject.SetActive(false);
-
             // 엔딩 지점 오브젝트 활성화
             EndingSpot.SetActive(true);
 
