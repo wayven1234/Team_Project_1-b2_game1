@@ -33,7 +33,7 @@ public class KeyControl : MonoBehaviour
         // 선택된 위치에 열쇠 프리팹 생성
         Instantiate(Keyprefab, chosenPoint.position,chosenPoint.rotation);
 
-        Destroy(wallobject);
+        Destroy(wallobject);  
 
     }
 
