@@ -20,21 +20,35 @@ public class KeyControl : MonoBehaviour
     public Transform Keyspawnpoint1;
     // 열쇠가 생성될 두 번째 위치
     public Transform Keyspawnpoint2;
+    // 열쇠가 생성될 세 번째 위치
+    public Transform Keyspawnpoint3;
 
 
     // 열쇠를 랜덤 위치에 생성하는 함수
     public void randomkey()
     {
         // 0 또는 1 중 랜덤 인덱스 생성
-        int randomindex = Random.Range(0, 2);
+        int randomindex = Random.Range(0, 3);
 
         // 랜덤 인덱스에 따라 생성 위치 선택
-        Transform chosenPoint = (randomindex == 0) ? Keyspawnpoint1 : Keyspawnpoint2;
+        Transform chosenPoint;
+        if (randomindex == 0)
+        {
+            chosenPoint = Keyspawnpoint1;
+        }
+        else if (randomindex == 1)
+        {
+            chosenPoint = Keyspawnpoint2;
+        }
+        else
+        {
+            chosenPoint = Keyspawnpoint3;
+        }
 
         // 선택된 위치에 열쇠 프리팹 생성
         Instantiate(Keyprefab, chosenPoint.position,chosenPoint.rotation);
 
-        Destroy(wallobject);  
+        Destroy(wallobject);
 
     }
 

@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Net.NetworkInformation;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class KeyUIController : MonoBehaviour
 {
-    // 캔버스에 있는 이미지들을 inspector에서 할당
+        // 캔버스에 있는 이미지들을 inspector에서 할당
     public Image[] images;
 
     // 바꿀 컬러 이미지 스프라이트
