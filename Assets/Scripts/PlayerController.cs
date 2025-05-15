@@ -6,7 +6,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     // 플레이어 이동 속도
-    public float moveSpeed = 5f;
+    public float moveSpeed = 3.2f;
 
     //원래 이동 속도를 저장할 변수
     private float originalMoveSpeed;

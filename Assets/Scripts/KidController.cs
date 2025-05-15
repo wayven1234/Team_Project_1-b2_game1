@@ -10,7 +10,7 @@ public class KidController : MonoBehaviour
     public Transform player;
 
     // 이동 속도
-    public float moveSpeed = 3.5f;
+    public float moveSpeed = 3f;
 
     // 게임 오버 패널
     public GameObject gameoverPanel;
