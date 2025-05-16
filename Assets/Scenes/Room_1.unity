@@ -27007,8 +27007,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 364d6515d5b87cf489b831062152b57d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  keyPanel: {fileID: 2134395054}
-  startPanelInactive: 1
   images:
   - {fileID: 186084176}
   - {fileID: 1828044395}
@@ -27052,6 +27050,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   keyPanel: {fileID: 2134395054}
+  startPanelInactive: 1
   images:
   - {fileID: 2134395056}
   colorSprites:
