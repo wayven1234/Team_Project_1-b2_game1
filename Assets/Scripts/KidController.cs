@@ -207,7 +207,7 @@ public class KidController : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             Hello(); // 인사 패널 표시 함수 호출
-
+             DisableChasing();
             // 게임 오버 패널이 할당되어 있다면
             if (gameoverPanel != null)
             {

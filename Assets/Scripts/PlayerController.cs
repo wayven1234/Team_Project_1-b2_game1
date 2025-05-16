@@ -22,6 +22,8 @@ public class PlayerController : MonoBehaviour
 
     private Camera mainCamera;
 
+    
+
     // 현재 플레이어 상태를 나타내는 변수
     private string currentState = "Player_front";   // 기본 상태를 정면으로 설정
 
@@ -190,7 +192,7 @@ public class PlayerController : MonoBehaviour
             transform.position = room2_3PlayerPosition;
 
             // 카메라 위치 이동
-            if (mainCamera != null) 
+            if (mainCamera != null)
             {
                 mainCamera.transform.position = room2_3CameraPosition;
             }
@@ -222,7 +224,7 @@ public class PlayerController : MonoBehaviour
             {
                 mainCamera.transform.position = room3CameraPosition;
             }
-        }    
+        }
 
         // Scissor 태그를 가진 오프젝트와 충돌했을 때
         else if (other.CompareTag("Scissor"))
@@ -240,6 +242,16 @@ public class PlayerController : MonoBehaviour
             {
                 kidController.EnableChasing();
             }
+        }
+        else if (other.CompareTag("Light"))
+        {
+            kidController.Hello();
+            if (kidController.gameoverPanel = null)
+            {
+                kidController.gameoverPanel.SetActive(true);
+                kidController.DisableChasing();
+            }
+
         }
     }
 

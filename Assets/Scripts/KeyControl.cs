@@ -13,6 +13,9 @@ public class KeyControl : MonoBehaviour
     // 엔딩 지점 오브젝트(열쇠를 획득하면 활성화할 오브젝트)
     public GameObject EndingSpot;
 
+    // 조명 오브젝트 
+    public GameObject FallingLigh;
+
     // 생성할 열쇠 프리팹
     public GameObject Keyprefab;
 
@@ -47,6 +50,7 @@ public class KeyControl : MonoBehaviour
 
         // 선택된 위치에 열쇠 프리팹 생성
         Instantiate(Keyprefab, chosenPoint.position,chosenPoint.rotation);
+        
 
         Destroy(wallobject);
 
@@ -67,6 +71,9 @@ public class KeyControl : MonoBehaviour
         {
             // 엔딩 지점 오브젝트 활성화
             EndingSpot.SetActive(true);
+
+            // 조명 발판 활성화
+            FallingLigh.SetActive(true);
 
             // 콘솔에 열쇠 획득 메시지 출력
             Debug.Log("열쇠를 획득했습니다");

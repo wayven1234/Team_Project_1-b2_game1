@@ -17,6 +17,8 @@ TagManager:
   - Key
   - Ending
   - Box
+  - FallingLight
+  - Light
   layers:
   - Default
   - TransparentFX
