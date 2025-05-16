@@ -5,6 +5,10 @@ using UnityEngine.UI;
 
 public class PieceController : MonoBehaviour
 {
+    [SerializeField] public GameObject keyPanel; // 키 UI 패널
+
+    [SerializeField] private bool startPanelInactive = true;    // 시작 시 패널 비활성화
+
     // 캔버스에 있는 이미지들을 inspertor에서 할당
     public Image[] images;
 
@@ -16,6 +20,15 @@ public class PieceController : MonoBehaviour
 
     public KeyControl Kc;
     public GameObject Box;
+
+    private void Start()
+    {
+        // 시작 시 패널 상태 설정
+        if (keyPanel != null && startPanelInactive)
+        {
+            keyPanel.SetActive(false); // 비활성화
+        }
+    }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
