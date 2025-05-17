@@ -20862,7 +20862,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1114347820
 Transform:
   m_ObjectHideFlags: 0
@@ -32745,6 +32745,7 @@ MonoBehaviour:
   Keyspawnpoint1: {fileID: 1212874523}
   Keyspawnpoint2: {fileID: 68448580}
   Keyspawnpoint3: {fileID: 866127361}
+  RoomDoor: {fileID: 1045586529}
 --- !u!114 &1837512153
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -37225,7 +37226,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2062977974
 Transform:
   m_ObjectHideFlags: 0
@@ -37279,8 +37280,8 @@ MonoBehaviour:
     m_Extent: {x: 0.9985302, y: 0.99853027, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
-  m_PointLightInnerRadius: 1.7
-  m_PointLightOuterRadius: 2.94
+  m_PointLightInnerRadius: 0.5
+  m_PointLightOuterRadius: 1.5
   m_ShapeLightParametricSides: 5
   m_ShapeLightParametricAngleOffset: 0
   m_ShapeLightParametricRadius: 1

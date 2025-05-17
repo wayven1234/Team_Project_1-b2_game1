@@ -26,6 +26,8 @@ public class KeyControl : MonoBehaviour
     // 열쇠가 생성될 세 번째 위치
     public Transform Keyspawnpoint3;
 
+    [SerializeField] private GameObject RoomDoor;
+
 
     // 열쇠를 랜덤 위치에 생성하는 함수
     public void randomkey()
@@ -80,6 +82,9 @@ public class KeyControl : MonoBehaviour
 
            // 열쇠 오브젝트 삭제
             Destroy(collision.gameObject);
+
+            // 벽 오브젝트 비활성화
+            RoomDoor.SetActive(false);
         }
     }
 }
