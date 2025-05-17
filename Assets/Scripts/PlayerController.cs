@@ -22,8 +22,6 @@ public class PlayerController : MonoBehaviour
 
     private Camera mainCamera;
 
-    
-
     // 현재 플레이어 상태를 나타내는 변수
     private string currentState = "Player_front";   // 기본 상태를 정면으로 설정
 

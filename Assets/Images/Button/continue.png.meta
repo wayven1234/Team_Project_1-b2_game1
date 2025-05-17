@@ -118,7 +118,7 @@ TextureImporter:
         width: 1400
         height: 767
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -126,27 +126,6 @@ TextureImporter:
       bones: []
       spriteID: 0c7e57530cc33ae41a23c6409669d9a2
       internalID: -104911420
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: continue_1
-      rect:
-        serializedVersion: 2
-        x: 1847
-        y: 1175
-        width: 7
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 17a3c93100a0ac54bb3f755949807e86
-      internalID: -1335193042
       vertices: []
       indices: 
       edges: []

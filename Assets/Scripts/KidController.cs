@@ -214,7 +214,7 @@ public class KidController : MonoBehaviour
             }
 
             Hello(); // 인사 패널 표시 함수 호출
-             DisableChasing();
+            DisableChasing();
 
             // GameManager를 찾아서 ShowGameOverPanel 매서드 호출
             GameManager gameManager = FindObjectOfType<GameManager>();
