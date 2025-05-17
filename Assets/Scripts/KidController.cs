@@ -132,32 +132,32 @@ public class KidController : MonoBehaviour
             pathUpdateTimer = 0f;
         }
 
-        // 현재 이동 방향 계산 (현재 위치 - 이전 위치)
-        Vector3 movementDirection = transform.position - previousPosition;
-
-        // 이동량이 충분히 클 때만 방향 변경 및 애니메이션 처리
-        if (movementDirection.magnitude > 0.01f)
+        // 에이전트 속도가 일정 값 이상일 때만 애니메이션 업데이트
+        if (agent.velocity.magnitude > 0.1f)
         {
-            // 이동 방향에 따라 애니메이션 상태 변경
-            UpdateAnimationBasedOnMovement(movementDirection);
+            UpdateAnimationBasedOnMovement(agent.velocity);
         }
-
-        // 이전 위치 갱신
-        previousPosition = transform.position;
     }
 
     // 이동 방향에 따라 애니메이션 상태 업데이트
     void UpdateAnimationBasedOnMovement(Vector3 movementDirection)
     {
-        // 이동 방향 정규화
-        movementDirection.Normalize();
+        // 더 정확한 방향 감지를 위해 NavMeshAgent의 속도를 직접 사용
+        Vector3 velocity = agent.velocity;
+
+        // 속도가 너무 작으면 애니메이션을 변경하지 않는다
+        if (velocity.magnitude < 0.1f)
+            return;
+
+        // 속도 백터 정규화
+        velocity.Normalize();
 
         // 수평, 수직 이동 값 분리
         float horizontalMovement = movementDirection.x;
         float verticalMovement = movementDirection.y;
 
-        // 수평 이동이 수직 이동보다 크면 좌우 애니메이션, 그렇지 않으면 상하 애니메이션
-        if (Mathf.Abs(horizontalMovement) > Mathf.Abs(verticalMovement))
+        // 절대값이 큰 폭을 우선시하여 애니메이션 결정
+        if (Mathf.Abs(horizontalMovement) > Mathf.Abs(verticalMovement) * 1.2f)
         {
             // 좌우 이동
             if (horizontalMovement > 0)
@@ -171,7 +171,7 @@ public class KidController : MonoBehaviour
                 ChangeAnimationState(KID_LEFT);
             }
         }
-        else
+        else if (Mathf.Abs(verticalMovement) > Mathf.Abs(horizontalMovement) * 1.2f)
         {
             // 상하 이동
             if (verticalMovement > 0)
@@ -206,12 +206,21 @@ public class KidController : MonoBehaviour
         // "Player" 태그를 지닌 오브젝트와 충동했는지 확인
         if (other.CompareTag("Player"))
         {
+            // PlayerController를 자겨와서 조작 비활성화
+            PlayerController playerController = other.GetComponent<PlayerController>();
+            if (playerController != null)
+            {
+                playerController.DisablePlayerControl();
+            }
+
             Hello(); // 인사 패널 표시 함수 호출
              DisableChasing();
-            // 게임 오버 패널이 할당되어 있다면
-            if (gameoverPanel != null)
+
+            // GameManager를 찾아서 ShowGameOverPanel 매서드 호출
+            GameManager gameManager = FindObjectOfType<GameManager>();
+            if (gameManager != null)
             {
-                gameoverPanel.SetActive(true); // 게임 오버 패널 활성화
+                gameManager.ShowGameOverPanel();
             }
         }
     }
@@ -234,6 +243,7 @@ public class KidController : MonoBehaviour
     public void EnableChasing()
     {
         isChasing = true; // 추격 상태로 전환
+        animator.speed = 1; // 애니메이션 속도 재설정
         agent.isStopped = false; // 에이전트 이동 재개
     }
 
@@ -241,6 +251,8 @@ public class KidController : MonoBehaviour
     public void DisableChasing()
     {
         isChasing = false; // 추격 상태 해제
+
+        animator.speed = 0; // 애니메이션 속도 정지
 
         // agent가 null이 아니고 활성화되어 있으면
         if (agent != null && agent.isActiveAndEnabled) 

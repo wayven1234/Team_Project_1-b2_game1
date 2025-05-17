@@ -20,6 +20,14 @@ public class GameManager : MonoBehaviour
     [SerializeField] private string nextSceneName = "Room_1";
     [SerializeField] private string nextSceneName2 = "MainScene";
     [SerializeField] private GameObject gameOverPanel;        // 게임 오버 패널 연결
+    [SerializeField] private GameObject helloPanel;             // 놀래키는 패널 연결
+
+    [SerializeField] private Image surpriseImage;           // 놀래키는 이미지 연결
+    private Vector3 surpriseImageOriginalSize;              // 원래 크기
+    private Vector3 surpriseImageEnlargedSize;              // 확대된 크기
+    private float surpriseImageScaleFactor = 5.0f;          // 확대 배율
+    private float gameoverDelay = 1f;                       // 게임 오버 패널이 활성화 되기 까지의 지연 시간
+    private float surpriseDelay = 0.5f;                     // 이미지가 커지기 까지의 지연 시간
 
 
     void Start()
@@ -38,7 +46,12 @@ public class GameManager : MonoBehaviour
         noBtn.onClick.AddListener(OnnoButtonClick);
 
         // 시작 시 패널 상태 설정
-        gameOverPanel.SetActive(false); // 비활성화
+        if (gameOverPanel != null)
+            gameOverPanel.SetActive(false); // 비활성화
+        
+        // 시작 시 패널 상태 설정
+        if (helloPanel != null)
+            helloPanel.SetActive(false); // 비활성화
 
 
         // 버튼들의 원래 크기를 저장
@@ -52,6 +65,13 @@ public class GameManager : MonoBehaviour
         // 이벤트 트리거 컴포넌트 추가 및 이벤트 등록
         AddButtonEvents(yesBtn, noBtn);
         AddButtonEvents(noBtn, yesBtn);
+
+        // 놀래키는 이미지 크기 조정
+        if (surpriseImage != null)
+        {
+            surpriseImageOriginalSize = surpriseImage.transform.localScale;
+            surpriseImageEnlargedSize = surpriseImageOriginalSize * surpriseImageScaleFactor;
+        }
 
     }
     public void OnyesButtonClick()
@@ -106,5 +126,60 @@ public class GameManager : MonoBehaviour
             // 두 버튼 중 어느 버튼에도 마우스가 올려져 있지 않을때
         });
         trigger.triggers.Add(entryExit);
+    }
+
+    public void ShowGameOverPanel()
+    {
+        // 놀래키는 이미지가 있으면 처음엔 작게 시작(기본)
+        if (surpriseImage != null)
+        {
+            surpriseImage.transform.localScale = surpriseImageOriginalSize;
+
+            // 일정 시간 후 이미지 크기를 갑자기 확대
+            StartCoroutine(EnlargeSurpriseImage());
+        }
+    }
+
+    // 이미지를 갑자기 확대하는 코루틴
+    private IEnumerator EnlargeSurpriseImage()
+    {
+        // 지정된 지연 시간만큼 대기
+        yield return new WaitForSeconds(surpriseDelay);
+
+        // 이미지 크기를 갑자기 확 키움
+        surpriseImage.transform.localScale = surpriseImageEnlargedSize;
+
+        // 약간의 흔들림 효과 추가
+        float snakeDuration = 0.5f;
+        float elapsedTime = 0f;
+
+        Vector3 originalPosition = surpriseImage.transform.localPosition;
+
+        while (elapsedTime < snakeDuration)
+        {
+            float offsetX = Random.Range(-10f, 10f);
+            float offsetY = Random.Range(-10f, 10f);
+
+            surpriseImage.transform.localPosition = originalPosition + new Vector3(offsetX, offsetY, 0f);
+
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        // 원래 위치로 복원
+        surpriseImage.transform.localPosition = originalPosition;
+
+        // 지정된 지연 시간만큼 대기 후 게임 오버 패널 표시
+        yield return new WaitForSeconds(gameoverDelay);
+
+        // 게임 오버 패널 활성화
+        if (gameOverPanel != null)
+        {
+            gameOverPanel.SetActive(true);
+        }
+
+        // 놀래키는 패널 비활성화
+        helloPanel.SetActive(false);
+
     }
 }

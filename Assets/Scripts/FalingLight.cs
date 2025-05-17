@@ -9,12 +9,10 @@ public class FalingLight : MonoBehaviour
 
     // 오브젝트가 생성될 때 y축의 높이 방향으로 얼마나 띄울지 결정하는 변수
     public float spawnHeightOffset = 1.5f;
-    
+
     
     // 오브젝트가 생성되서 떨어질때 걸리는 시간
     public float dropduration = 0.2f;
-
-    
 
     // 트리거에 진입했을 때 호출되는 함수 (열쇠가 충돌 감지)
     private void OnTriggerEnter2D(Collider2D collision)
@@ -44,9 +42,7 @@ public class FalingLight : MonoBehaviour
             // 코루틴을 실행하여 오브젝트를 떨어뜨림
             StartCoroutine(SmoothDrop(startPosition, endPosition, dropduration));
         }
-        }
-
-
+    }
 
     // 오브젝트를 부드럽게 떨어뜨리는 코루틴 함수
     private IEnumerator SmoothDrop(Vector3 from, Vector3 to, float duration)

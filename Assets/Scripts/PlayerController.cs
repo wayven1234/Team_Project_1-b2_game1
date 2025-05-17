@@ -98,31 +98,46 @@ public class PlayerController : MonoBehaviour
         // 움직임을 위한 변수 초기화
         float horizontalInput = 0f;
         float verticalInput = 0f;
+        bool KeyPressed = false;
 
         // 화살표 키 대신 직접 키를 확인 (WASD로만 움직임)
         if (Input.GetKey(KeyCode.A))
         {
             horizontalInput = -1f;
             ChangeAnimationState(PLAYER_LEFT);
+            KeyPressed = true;
         }
         else if (Input.GetKey(KeyCode.D))
         {
             horizontalInput = 1f;
             ChangeAnimationState(PLAYER_RIGHT);
+            KeyPressed = true;
         }
         else if (Input.GetKey(KeyCode.W))
         {
             verticalInput = 1f;
             ChangeAnimationState(PLAYER_BACK);
+            KeyPressed = true;
         }
         else if (Input.GetKey(KeyCode.S))
         {
             verticalInput = -1f;
             ChangeAnimationState(PLAYER_FRONT);
+            KeyPressed = true;
+        }
+        // 키를 누르지 않았을 때 애니메이션 정지
+        if (!KeyPressed)
+        {
+            animator.speed = 0f;
+        }
+        // 키를 누르고 있을 때 애니메이션 상태
+        else if (KeyPressed)
+        {
+            animator.speed = 1f;
         }
 
             // 이동 방향 개선
-            Vector3 movement = new Vector3 (horizontalInput, verticalInput, 0f);
+            Vector3 movement = new Vector3(horizontalInput, verticalInput, 0f);
 
         // 이동 Vector 정규화 (대각선 이동속도 조절)
         if (movement.magnitude > 0)
@@ -198,8 +213,6 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-
-
         // Room_3_OutDoor 태그를 가진 오브젝트와 충돌했을 때
         else if (other.CompareTag("Room_3_OutDoor"))
         {
@@ -245,13 +258,7 @@ public class PlayerController : MonoBehaviour
         }
         else if (other.CompareTag("Light"))
         {
-            kidController.Hello();
-            if (kidController.gameoverPanel = null)
-            {
-                kidController.gameoverPanel.SetActive(true);
-                kidController.DisableChasing();
-            }
-
+            moveSpeed = 0f;
         }
     }
 
@@ -274,5 +281,17 @@ public class PlayerController : MonoBehaviour
 
         // 이동 속도 복구
         moveSpeed = originalMoveSpeed;
+    }
+
+    public void DisablePlayerControl()
+    {
+        // 플레이어 조작을 비활성화
+        this.enabled = false;
+
+        // 애니메이션 멈추기
+        if (animator != null)
+        {
+            animator.speed = 0f;
+        }
     }
 }
