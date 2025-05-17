@@ -27,7 +27,7 @@ public class GameManager : MonoBehaviour
     private Vector3 surpriseImageEnlargedSize;              // 확대된 크기
     private float surpriseImageScaleFactor = 5.0f;          // 확대 배율
     private float gameoverDelay = 1f;                       // 게임 오버 패널이 활성화 되기 까지의 지연 시간
-    private float surpriseDelay = 0.5f;                     // 이미지가 커지기 까지의 지연 시간
+    private float surpriseDelay = 0.2f;                     // 이미지가 커지기 까지의 지연 시간
 
 
     void Start()
