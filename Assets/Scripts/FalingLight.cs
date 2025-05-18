@@ -24,9 +24,6 @@ public class FalingLight : MonoBehaviour
             // 콘솔에 플레이어가 지나갔다고 메시지 출력
             Debug.Log("플레이어가 지나갔습니다.");
 
-            // 충돌한 오브젝트를 비활성화
-            collision.gameObject.SetActive(false);
-
             // 인식한 오브젝트의 좌표를 contactPoint에 넣는다
             Vector2 contactPoint = collision.transform.position;
 
@@ -35,9 +32,6 @@ public class FalingLight : MonoBehaviour
 
             // contactPoint의 현재 위치
             Vector3 endPosition = new Vector3(contactPoint.x, contactPoint.y , 0f);
-
-            // Instantiate에서 소환한 오브젝트와 그 좌표값을 spawned에 넣어준다
-
 
             // 코루틴을 실행하여 오브젝트를 떨어뜨림
             StartCoroutine(SmoothDrop(startPosition, endPosition, dropduration));
