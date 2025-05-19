@@ -56,6 +56,7 @@ public class PlayerController : MonoBehaviour
     // 느려지는 지속 시간
     public float slowDuration = 4f;
 
+    bool ismove = true;
     void Start()
     {
         // Rigidbody2D 컴포넌트 가져오기
@@ -98,31 +99,33 @@ public class PlayerController : MonoBehaviour
         float horizontalInput = 0f;
         float verticalInput = 0f;
         bool KeyPressed = false;
-
-        // 화살표 키 대신 직접 키를 확인 (WASD로만 움직임)
-        if (Input.GetKey(KeyCode.A))
+        if (ismove)
         {
-            horizontalInput = -1f;
-            ChangeAnimationState(PLAYER_LEFT);
-            KeyPressed = true;
-        }
-        else if (Input.GetKey(KeyCode.D))
-        {
-            horizontalInput = 1f;
-            ChangeAnimationState(PLAYER_RIGHT);
-            KeyPressed = true;
-        }
-        else if (Input.GetKey(KeyCode.W))
-        {
-            verticalInput = 1f;
-            ChangeAnimationState(PLAYER_BACK);
-            KeyPressed = true;
-        }
-        else if (Input.GetKey(KeyCode.S))
-        {
-            verticalInput = -1f;
-            ChangeAnimationState(PLAYER_FRONT);
-            KeyPressed = true;
+            // 화살표 키 대신 직접 키를 확인 (WASD로만 움직임)
+            if (Input.GetKey(KeyCode.A))
+            {
+                horizontalInput = -1f;
+                ChangeAnimationState(PLAYER_LEFT);
+                KeyPressed = true;
+            }
+            else if (Input.GetKey(KeyCode.D))
+            {
+                horizontalInput = 1f;
+                ChangeAnimationState(PLAYER_RIGHT);
+                KeyPressed = true;
+            }
+            else if (Input.GetKey(KeyCode.W))
+            {
+                verticalInput = 1f;
+                ChangeAnimationState(PLAYER_BACK);
+                KeyPressed = true;
+            }
+            else if (Input.GetKey(KeyCode.S))
+            {
+                verticalInput = -1f;
+                ChangeAnimationState(PLAYER_FRONT);
+                KeyPressed = true;
+            }
         }
         // 키를 누르지 않았을 때 애니메이션 정지
         if (!KeyPressed)
@@ -257,7 +260,7 @@ public class PlayerController : MonoBehaviour
         }
         else if (other.CompareTag("Light"))
         {
-            moveSpeed = 0f;
+            ismove = false;
         }
     }
 

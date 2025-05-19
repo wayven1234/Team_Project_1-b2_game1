@@ -7712,8 +7712,8 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.00087366503, y: 1.9963815}
-  m_Size: {x: 3.2535884, y: 3.9961193}
+  m_Offset: {x: -0.0054734442, y: 1.991781}
+  m_Size: {x: 3.2443912, y: 4.005313}
   m_Direction: 0
 --- !u!95 &419923300
 Animator:
@@ -32702,7 +32702,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 3.2
   kidController: {fileID: 419923301}
-  slowedSpeed: 1.6
+  slowedSpeed: 0.8
   slowDuration: 3
 --- !u!114 &1837512151
 MonoBehaviour:
