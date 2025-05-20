@@ -85,7 +85,7 @@ public class KidController : MonoBehaviour
         agent.speed = moveSpeed;
         agent.angularSpeed = 120f;
         agent.acceleration = 8f;
-        agent.stoppingDistance = 1f;
+        agent.stoppingDistance = 0f;
         agent.autoBraking = false;
         agent.updatePosition = true;
         agent.updateRotation = false;
