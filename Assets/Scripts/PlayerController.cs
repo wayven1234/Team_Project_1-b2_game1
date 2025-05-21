@@ -7,6 +7,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 
 {
+    public GameObject boo;
     // 플레이어 이동 속도
     public float moveSpeed = 3.2f;
 
@@ -57,7 +58,8 @@ public class PlayerController : MonoBehaviour
     // 느려지는 지속 시간
     public float slowDuration = 4f;
 
-    bool ismove = true;
+    bool isMoving = true;
+   
     void Start()
     {
         // Rigidbody2D 컴포넌트 가져오기
@@ -100,7 +102,7 @@ public class PlayerController : MonoBehaviour
         float horizontalInput = 0f;
         float verticalInput = 0f;
         bool KeyPressed = false;
-        if (ismove)
+        if (isMoving)
         {
             // 화살표 키 대신 직접 키를 확인 (WASD로만 움직임)
             if (Input.GetKey(KeyCode.A))
@@ -136,23 +138,29 @@ public class PlayerController : MonoBehaviour
         // 키를 누르지 않았을 때 애니메이션 정지
         if (!KeyPressed)
         {
-            SoundManager.Instance.Pause("발소리");
             animator.speed = 0f;
+            SoundManager.Instance.Play("발소리");
         }
         // 키를 누르고 있을 때 애니메이션 상태
         else if (KeyPressed)
         {
-            SoundManager.Instance.Play("발소리");
             animator.speed = 1f;
+            SoundManager.Instance.Pause("발소리");
         }
 
             // 이동 방향 개선
             Vector3 movement = new Vector3(horizontalInput, verticalInput, 0f);
 
-        // 이동 Vector 정규화 (대각선 이동속도 조절)
+        // 이동 Vector 정규화 
         if (movement.magnitude > 0)
         {
             movement.Normalize();
+
+            SoundManager.Instance.Play("발소리");
+        }
+        else
+        {
+            SoundManager.Instance.Pause("발소리");
         }
 
         // 플레이어 이동
@@ -268,7 +276,12 @@ public class PlayerController : MonoBehaviour
         }
         else if (other.CompareTag("Light"))
         {
-            ismove = false;
+            isMoving = false;
+        }
+        else if (other.CompareTag("boo"))
+        {
+            Destroy(other.gameObject);
+            SoundManager.Instance.Play("까꿍");
         }
     }
 
