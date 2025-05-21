@@ -35,6 +35,8 @@ public class FalingLight : MonoBehaviour
 
             // 코루틴을 실행하여 오브젝트를 떨어뜨림
             StartCoroutine(SmoothDrop(startPosition, endPosition, dropduration));
+
+            SoundManager.Instance.Play("유리 부숴지는 소리");
         }
     }
 

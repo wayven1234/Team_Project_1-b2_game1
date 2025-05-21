@@ -5,6 +5,7 @@ using UnityEditor.Search;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
+
 {
     // 플레이어 이동 속도
     public float moveSpeed = 3.2f;
@@ -107,34 +108,41 @@ public class PlayerController : MonoBehaviour
                 horizontalInput = -1f;
                 ChangeAnimationState(PLAYER_LEFT);
                 KeyPressed = true;
+             
             }
             else if (Input.GetKey(KeyCode.D))
             {
                 horizontalInput = 1f;
                 ChangeAnimationState(PLAYER_RIGHT);
                 KeyPressed = true;
+                
             }
             else if (Input.GetKey(KeyCode.W))
             {
                 verticalInput = 1f;
                 ChangeAnimationState(PLAYER_BACK);
                 KeyPressed = true;
+                
             }
             else if (Input.GetKey(KeyCode.S))
             {
                 verticalInput = -1f;
                 ChangeAnimationState(PLAYER_FRONT);
                 KeyPressed = true;
+                
             }
         }
+
         // 키를 누르지 않았을 때 애니메이션 정지
         if (!KeyPressed)
         {
+            SoundManager.Instance.Pause("발소리");
             animator.speed = 0f;
         }
         // 키를 누르고 있을 때 애니메이션 상태
         else if (KeyPressed)
         {
+            SoundManager.Instance.Play("발소리");
             animator.speed = 1f;
         }
 

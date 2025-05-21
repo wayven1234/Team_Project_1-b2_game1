@@ -34,6 +34,8 @@ public class PieceController : MonoBehaviour
                 // 수집한 조각 수 증가
                 collectedPieces++;
 
+                SoundManager.Instance.Play("아이템 먹는 소리");
+
                 // 현재까지 수집한 조각 개수와 전체 이미지 개수를 로그로 출력
                 Debug.Log("조각 수집: " + collectedPieces + "/" + images.Length);
                 if (collectedPieces >= 4)

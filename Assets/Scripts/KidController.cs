@@ -206,10 +206,11 @@ public class KidController : MonoBehaviour
         // "Player" 태그를 지닌 오브젝트와 충동했는지 확인
         if (other.CompareTag("Player"))
         {
-            // PlayerController를 자겨와서 조작 비활성화
+            // PlayerController를 가져와서 조작 비활성화
             PlayerController playerController = other.GetComponent<PlayerController>();
             if (playerController != null)
             {
+                SoundManager.Instance.Play("비명");
                 playerController.DisablePlayerControl();
             }
 
@@ -242,6 +243,7 @@ public class KidController : MonoBehaviour
 
     public void EnableChasing()
     {
+        SoundManager.Instance.Play("아이 웃음 소리");
         isChasing = true; // 추격 상태로 전환
         animator.speed = 1; // 애니메이션 속도 재설정
         agent.isStopped = false; // 에이전트 이동 재개
@@ -250,6 +252,7 @@ public class KidController : MonoBehaviour
     // 추격 비활성화 함수
     public void DisableChasing()
     {
+        SoundManager.Instance.Pause("아이 웃음 소리");
         isChasing = false; // 추격 상태 해제
 
         animator.speed = 0; // 애니메이션 속도 정지
