@@ -166,7 +166,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e840c0797635e3b45a4e29edb6db77f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextSceneName: Room_1
+  nextSceneName: TimeLine
   startButton: {fileID: 1083475590}
   menuButton: {fileID: 1705841358}
   nextButton: {fileID: 226690837}

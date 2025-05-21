@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Room_1.unity
     guid: 8bdbea8e92c73224bba539b2685f8151
+  - enabled: 1
+    path: Assets/Scenes/TimeLine.unity
+    guid: 07b19f980d33d4346ba173dab4e617c0
   m_configObjects: {}
