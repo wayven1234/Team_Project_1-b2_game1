@@ -83,6 +83,8 @@ public class KeyControl : MonoBehaviour
            // 열쇠 오브젝트 삭제
             Destroy(collision.gameObject);
 
+            SoundManager.Instance.Play("열쇠 획득");
+
             // 벽 오브젝트 비활성화
             RoomDoor.SetActive(false);
         }

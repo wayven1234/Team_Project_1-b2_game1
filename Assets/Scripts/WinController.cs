@@ -19,7 +19,9 @@ public class WinController : MonoBehaviour
     {
         if (collision.CompareTag("WinPanelOn"))
         {
-            winPanel.SetActive(true); // 성공 패널 활성화
+            SoundManager.Instance.Pause("배경음");
+            SoundManager.Instance.Pause("아이 웃음 소리");
+            winPanel.SetActive(true); // 성공 패널 
         }
     }
 }

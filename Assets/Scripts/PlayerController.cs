@@ -62,6 +62,8 @@ public class PlayerController : MonoBehaviour
    
     void Start()
     {
+        SoundManager.Instance.Play("배경음");
+
         // Rigidbody2D 컴포넌트 가져오기
         rb = GetComponent<Rigidbody2D>();
 
