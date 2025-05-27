@@ -317,6 +317,7 @@ public class PlayerController : MonoBehaviour
         if (animator != null)
         {
             animator.speed = 0f;
+            SoundManager.Instance.Pause("¹ß¼Ò¸®");
         }
     }
 }
