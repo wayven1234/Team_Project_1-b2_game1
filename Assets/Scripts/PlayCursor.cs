@@ -10,7 +10,6 @@ public class PlayCursor : MonoBehaviour
     void Start()
     {
         Cursor.visible = false;
-        cursorImage.gameObject.SetActive(false);
     }
 
     void Update()
