@@ -175,7 +175,7 @@ public class GameManager : MonoBehaviour
         // 게임 오버 패널 활성화
         if (gameOverPanel != null)
         {
-            SoundManager.Instance.Pause("배경음");
+            SoundManager.Instance.Stop("배경음");
             gameOverPanel.SetActive(true);
         }
 

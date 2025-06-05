@@ -66,6 +66,16 @@ public class SoundManager : MonoBehaviour
         s.source.Pause();
     }
 
+    public void Stop(string name)
+    {
+        Sound s = System.Array.Find(sounds, sound => sound.name == name);
+        if (s == null)
+        {
+            return;
+        }
+        s.source.Stop();
+    }
+
     // 타 스크립트에서 소리를 재생하는 코드
     // SoundManager.Instance.Play("사운드명");
 
