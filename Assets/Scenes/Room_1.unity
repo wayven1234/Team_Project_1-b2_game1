@@ -4881,7 +4881,7 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: "\uC720\uB9AC \uBD80\uC234\uC9C0\uB294 \uC18C\uB9AC"
     clip: {fileID: 8300000, guid: c7b63d796b2b4d449918f06e5d716df0, type: 3}
-    volume: 0.035
+    volume: 0.025
     loop: 0
     source: {fileID: 0}
   - name: "\uBE44\uBA85"
@@ -4921,7 +4921,7 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: "\uBC30\uACBD\uC74C"
     clip: {fileID: 8300000, guid: 4a9ae101bde7f274997bd7531b8c528f, type: 3}
-    volume: 0.159
+    volume: 0.102
     loop: 0
     source: {fileID: 0}
 --- !u!4 &328825795
